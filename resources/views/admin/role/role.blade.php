@@ -36,9 +36,9 @@
 
         <div class="card mt-2">
             <div class="card-body">
-                <h6 class="card-title">Role List</h6>
+                <h6 class="card-title">User List</h6>
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>si</th>
@@ -54,15 +54,22 @@
                                     <th>{{$key+1}}</th>
                                     <td>{{$user->name}}</td>
                                     <td>
-                                        @foreach ($user->getRoleNames() as $role)
+                                        @forelse ($user->getRoleNames() as $role)
                                           <span class="badge badge-success">{{$role}}</span>
-                                        @endforeach
+                                        @empty
+                                            <span class="badge badge-secondary">Not Assigned</span>
+                                        @endforelse
                                     <td>
-                                        @foreach ($user->getAllPermissions() as $permission)
+                                        @forelse ($user->getAllPermissions() as $permission)
                                             <span class="badge badge-success">{{$permission->name}}</span>
-                                        @endforeach
+                                        @empty
+                                           <span class="badge badge-secondary">Not Assigned</span>
+                                        @endforelse
                                     </td>
-                                    <td></td>
+                                    <td>
+                                        <a href="{{route('remove.role',$user->id)}}" class="btn btn-sm btn-danger">Remove</a>
+                                        <a href="{{route('edit.user.permission',$user->id)}}" class="btn btn-sm btn-danger">Edit</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

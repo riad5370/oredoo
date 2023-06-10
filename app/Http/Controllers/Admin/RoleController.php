@@ -34,4 +34,22 @@ class RoleController extends Controller
         $user->assignRole($request->role_id);
         return back();
     }
+    function removeRole($id){
+        $user = User::find($id);
+        $user->syncRoles([]);
+        $user->syncPermissions([]);
+        return back(); 
+    }
+    function permissionEdit($id){
+        return view('admin.role.edit-user-permission',[
+            'users'=>User::find($id),
+            'permissions'=>Permission::all()
+        ]);
+    }
+    function permissionUpdate(Request $request){
+        $user = User::find($request->id);
+        $permissions = $request->permission;
+        $user->syncPermissions($permissions);
+        return back();
+    }
 }

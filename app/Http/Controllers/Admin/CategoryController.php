@@ -57,7 +57,6 @@ class CategoryController extends Controller
             'image'=>$name,
         ]);
         return back()->with('success','Category Added!');
-
     }
 
     /**

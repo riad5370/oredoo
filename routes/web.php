@@ -49,6 +49,9 @@ Route::middleware([
     Route::post('/permission/store',[RoleController::class,'storePermission'])->name('permission.store');
     Route::post('/role/store',[RoleController::class,'storeRole'])->name('role.store');
     Route::post('/assign/role',[RoleController::class,'assignRole'])->name('assign.role');
+    Route::get('/remove/role/{id}',[RoleController::class,'removeRole'])->name('remove.role');
+    Route::get('/role/permission/edit/{id}',[RoleController::class,'permissionEdit'])->name('edit.user.permission');
+    Route::post('/permission/update',[RoleController::class,'permissionUpdate'])->name('permission.update');
 
 
 });
