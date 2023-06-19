@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\Admin\RoleController;
 
 
@@ -43,6 +44,9 @@ Route::middleware([
      //Tag
      Route::resource('tags',TagController::class);
      Route::get('/tags/status/{id}',[TagController::class,'status'])->name('tags.status');
+
+     //blog-post 
+     Route::resource('posts',PostController::class);
 
     //Role
     Route::get('role',[RoleController::class,'index'])->name('role.index');

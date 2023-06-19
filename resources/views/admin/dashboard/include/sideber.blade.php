@@ -66,6 +66,23 @@
                 </div>
             </li>
             <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#posts" role="button" aria-expanded="false" aria-controls="emails">
+                    <i class="link-icon" data-feather="mail"></i>
+                    <span class="link-title">Blog Post</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse" id="posts">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a href="{{route('posts.create')}}" class="nav-link">Add Post</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('posts.index')}}" class="nav-link">My Post</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#roles" role="button" aria-expanded="false" aria-controls="emails">
                     <i class="link-icon" data-feather="mail"></i>
                     <span class="link-title">Role Manager</span>

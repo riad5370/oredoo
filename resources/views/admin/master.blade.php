@@ -27,6 +27,7 @@ License: You must have a valid license purchased only from above link or https:/
     <link rel="stylesheet" href="{{asset('backend/css/demo_1/style.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('backend/images/favicon.png')}}" />
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     @stack('css')
 </head>
 <body>
@@ -71,6 +72,7 @@ License: You must have a valid license purchased only from above link or https:/
 <!-- custom js for this page -->
 <script src="{{asset('backend/js/dashboard.js')}}"></script>
 <script src="{{asset('backend/js/datepicker.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 @yield('footer_script')
 <!-- end custom js for this page -->
 </body>
