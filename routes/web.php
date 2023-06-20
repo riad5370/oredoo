@@ -5,8 +5,9 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\TagController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\FrontendController;
 
 
 /*
@@ -20,9 +21,12 @@ use App\Http\Controllers\Admin\RoleController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/',[FrontendController::class,'index'])->name('index');
+Route::get('/details/post',[FrontendController::class,'details'])->name('details');
 
 Route::middleware([
     'auth:sanctum',
