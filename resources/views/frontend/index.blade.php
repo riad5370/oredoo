@@ -13,13 +13,13 @@
                             <div class="post-overly">
                                 <div class="post-overly-content">
                                     <div class="entry-cat">
-                                        <a href="blog-layout-1.html" class="category-style-2">{{$slider->category->name}}</a>
+                                        <a href="{{route('category.post',$slider->category_id)}}" class="category-style-2">{{$slider->category->name}}</a>
                                     </div>
                                     <h2 class="entry-title">
-                                        <a href="{{route('details')}}">{{$slider->title}}</a>
+                                        <a href="{{route('details',$slider->slug)}}">{{$slider->title}}</a>
                                     </h2>
                                     <ul class="entry-meta">
-                                        <li class="post-author"> <a href="author.html">{{$slider->user->name}}</a></li>
+                                        <li class="post-author"> <a href="{{route('author.post',$slider->author_id)}}">{{$slider->user->name}}</a></li>
                                         <li class="post-date"> <span class="line"></span>{{$slider->created_at->format('F d,Y')}}</li>
                                         <li class="post-timeread"> <span class="line"></span>{{$slider->created_at->diffForHumans()}}</li>
                                     </ul>
@@ -42,7 +42,7 @@
                 <div class="col-lg-12 ">
                     <div class="categories-items">
                         @foreach ($categories as $category)
-                            <a class="category-item" href="#">
+                            <a class="category-item" href="{{route('category.post',$category->id)}}">
                                 <div class="image">
                                     <img src="{{asset('uploads/category/'.$category->image)}}" alt="">
                                 </div>
@@ -71,23 +71,23 @@
                     @foreach ($recentPost as $recent)
                     <div class="post-list post-list-style4">
                         <div class="post-list-image">
-                            <a href="{{route('details')}}">
+                            <a href="{{route('details',$recent->slug)}}">
                                 <img src="{{asset('uploads/post/'.$recent->image)}}" alt="">
                             </a>
                         </div>
                         <div class="post-list-content">
                             <ul class="entry-meta">
                                 <li class="entry-cat">
-                                    <a href="blog-layout-1.html" class="category-style-1">{{$recent->category->name}}</a>
+                                    <a href="{{route('category.post',[$recent->category_id,'category-blog-post'])}}" class="category-style-1">{{$recent->category->name}}</a>
                                 </li>
                                 <li class="post-date"> <span class="line"></span>{{$recent->created_at->format('F d,Y')}}</li>
                             </ul>
                             <h5 class="entry-title">
-                                <a href="{{route('details')}}">{{$recent->title}}</a>
+                                <a href="{{route('details',$recent->slug)}}">{{$recent->title}}</a>
                             </h5>
 
                             <div class="post-btn">
-                                <a href="{{route('details')}}" class="btn-read-more">Continue Reading <i
+                                <a href="{{route('details',$recent->slug)}}" class="btn-read-more">Continue Reading <i
                                         class="las la-long-arrow-alt-right"></i></a>
                             </div>
                         </div>

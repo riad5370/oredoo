@@ -24,7 +24,6 @@
     @include('frontend.include.header')
 
     @yield('body')
-
     <!--footer-->
     @include('frontend.include.footer')
 

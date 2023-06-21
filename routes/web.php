@@ -21,18 +21,14 @@ use App\Http\Controllers\FrontendController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
+//frontend
 Route::get('/',[FrontendController::class,'index'])->name('index');
-Route::get('/details/post',[FrontendController::class,'details'])->name('details');
+Route::get('/details/post/{slug}',[FrontendController::class,'details'])->name('details');
+Route::get('/category/post/{category}',[FrontendController::class,'categoryPost'])->name('category.post');
+Route::get('/author-post/{author}',[FrontendController::class,'authorPost'])->name('author.post');
 
 Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
+    'auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
 
    //start-user
