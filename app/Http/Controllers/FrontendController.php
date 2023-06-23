@@ -42,4 +42,12 @@ class FrontendController extends Controller
             'tags'=>Tag::all()
         ]);
     }
+    public function authorList(){
+        $authorLists = Post::select('author_id')
+                       ->groupBy('author_id')
+                       ->paginate(6);
+        return view('frontend.about.author-list',[
+            'authorLists'=>$authorLists
+        ]);
+    }
 }

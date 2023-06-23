@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\GuestRegisterController;
+use App\Http\Controllers\GuestLoginController;
 
 
 /*
@@ -26,6 +28,14 @@ Route::get('/',[FrontendController::class,'index'])->name('index');
 Route::get('/details/post/{slug}',[FrontendController::class,'details'])->name('details');
 Route::get('/category/post/{category}',[FrontendController::class,'categoryPost'])->name('category.post');
 Route::get('/author-post/{author}',[FrontendController::class,'authorPost'])->name('author.post');
+Route::get('/author/list',[FrontendController::class,'authorList'])->name('author.list');
+
+//Guest-login-register
+Route::get('/guest/register',[GuestRegisterController::class,'index'])->name('guest.register');
+Route::post('/guest/store',[GuestRegisterController::class,'store'])->name('guest.store');
+
+Route::get('/guest/login',[GuestLoginController::class,'index'])->name('login.index');
+Route::post('/guest/login/request',[GuestLoginController::class,'guestLogin'])->name('guest.login');
 
 Route::middleware([
     'auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {

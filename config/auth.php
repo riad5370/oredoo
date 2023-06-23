@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'guestlogin' => [
+            'driver' => 'session',
+            'provider' => 'guestlogins',
+        ],
     ],
 
     /*
@@ -64,6 +68,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+        'guestlogins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Guestlogin::class,
+        ],
+
 
         // 'users' => [
         //     'driver' => 'database',

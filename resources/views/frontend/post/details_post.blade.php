@@ -57,27 +57,22 @@
                                 <p>Share on :</p>
                                 <ul class="list-inline">
                                     <li>
-                                        <a href="#">
+                                        <a href="https://www.facebook.com/sharer.php?u={{url()->current()}}" target="_blank">
                                             <i class="fab fa-facebook"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="https://www.instagram.com/sharer.php?u={{url()->current()}}">
                                             <i class="fab fa-instagram"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="http://twitter.com/share?url={{url()->current()}}" target="_blank">
                                             <i class="fab fa-twitter"></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" >
-                                            <i class="fab fa-youtube"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" >
+                                        <a href="http://pinterest.com/pin/create/bookmarklet/?url={{url()->current()}}" target="_blank">
                                             <i class="fab fa-pinterest"></i>
                                         </a>
                                     </li>

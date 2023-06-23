@@ -20,7 +20,7 @@
                                 <a class="nav-link" href="blog.html"> Blogs </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="author.html"> Authors </a>
+                                <a class="nav-link" href="{{route('author.list')}}"> Authors </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="about.html"> About </a>
@@ -53,7 +53,7 @@
                 </div>
                 <!--button-subscribe-->
                 <div class="botton-sub">
-                    <a href="signup.html" class="btn-subscribe">Sign Up</a>
+                    <a href="{{route('guest.register')}}" class="btn-subscribe">Sign Up</a>
                 </div>
                 <!--navbar-toggler-->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav"
