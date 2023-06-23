@@ -9,3 +9,6 @@
     <script src="{{asset('frontend')}}/assets/js/jquery.marquee.js"></script>
     <!-- JS main  -->
     <script src="{{asset('frontend')}}/assets/js/main.js"></script>
+    <!-- sweet alert  -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @stack('js')

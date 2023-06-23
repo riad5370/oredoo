@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\GuestRegisterController;
 use App\Http\Controllers\GuestLoginController;
+use App\Http\Controllers\GithubController;
+use App\Http\Controllers\GoogleController;
 
 
 /*
@@ -23,7 +25,7 @@ use App\Http\Controllers\GuestLoginController;
 |
 */
 
-//frontend
+//start-frontend-route
 Route::get('/',[FrontendController::class,'index'])->name('index');
 Route::get('/details/post/{slug}',[FrontendController::class,'details'])->name('details');
 Route::get('/category/post/{category}',[FrontendController::class,'categoryPost'])->name('category.post');
@@ -33,10 +35,20 @@ Route::get('/author/list',[FrontendController::class,'authorList'])->name('autho
 //Guest-login-register
 Route::get('/guest/register',[GuestRegisterController::class,'index'])->name('guest.register');
 Route::post('/guest/store',[GuestRegisterController::class,'store'])->name('guest.store');
-
+//login process
 Route::get('/guest/login',[GuestLoginController::class,'index'])->name('login.index');
 Route::post('/guest/login/request',[GuestLoginController::class,'guestLogin'])->name('guest.login');
+//logout
+Route::get('/guest/logout',[GuestLoginController::class,'logout'])->name('guest.logout');
 
+//Github-Login
+Route::get('/github/redirect',[GithubController::class,'redirectProvider'])->name('github.redirect');
+Route::get('/github/callback',[GithubController::class,'providerToApplication'])->name('github.callback');
+//Google-Login
+Route::get('/google/redirect',[GoogleController::class,'redirectProvider'])->name('google.redirect');
+Route::get('/google/callback',[GoogleController::class,'providerToApplication'])->name('google.callback');
+
+//start-admin-route
 Route::middleware([
     'auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');

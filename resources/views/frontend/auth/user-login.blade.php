@@ -26,6 +26,11 @@
                             <div class="form-group">
                                 <button type="submit" class="btn-custom">Login in</button>
                             </div>
+                            <div class="">
+                                <a  class="btn btn-light w-100 my-3" href="{{route('github.redirect')}}">Login with Github <img width="30"  src="https://i.postimg.cc/qMVKBXG4/001-github.png" alt="">  </a></li>
+                                <a  class="btn btn-light w-100 mb-3" href="{{route('google.redirect')}}">Login with Google <img width="30"  src="https://i.postimg.cc/02YwzMtm/003-google.png" alt="">  </a></li>
+
+                            </div>
                             <p class="form-group text-center">Don't have an account? <a href="{{route('guest.register')}}" class="btn-link">Create One</a> </p>
                         </form>
                     </div> 

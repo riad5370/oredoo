@@ -53,7 +53,21 @@
                 </div>
                 <!--button-subscribe-->
                 <div class="botton-sub">
-                    <a href="{{route('guest.register')}}" class="btn-subscribe">Sign Up</a>
+                    @auth('guestlogin')
+                        <div class="dropdown">
+                        <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ Auth::guard('guestlogin')->user()->name }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#">Profile</a>
+                          <a class="dropdown-item" href="{{route('guest.logout')}}">Logout</a>
+
+                        </div>
+                      </div>
+                    @else
+                        <a href="{{route('guest.register')}}" class="btn-subscribe">Sign Up</a>
+                    @endauth
+                    
                 </div>
                 <!--navbar-toggler-->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav"
