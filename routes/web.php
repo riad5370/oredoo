@@ -12,6 +12,7 @@ use App\Http\Controllers\GuestRegisterController;
 use App\Http\Controllers\GuestLoginController;
 use App\Http\Controllers\GithubController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\GuestPassResetController;
 
 
 /*
@@ -47,6 +48,13 @@ Route::get('/github/callback',[GithubController::class,'providerToApplication'])
 //Google-Login
 Route::get('/google/redirect',[GoogleController::class,'redirectProvider'])->name('google.redirect');
 Route::get('/google/callback',[GoogleController::class,'providerToApplication'])->name('google.callback');
+
+//password Reset
+Route::get('/forgot-password',[GuestPassResetController::class,'index'])->name('forgot.password');
+Route::Post('/password-reset-request',[GuestPassResetController::class,'passResetRequest'])->name('reset.request');
+Route::get('/password-reset-form/{token}',[GuestPassResetController::class,'passResetForm'])->name('pass.reset.form');
+Route::Post('/password-reset',[GuestPassResetController::class,'passwordReset'])->name('password.reset');
+
 
 //start-admin-route
 Route::middleware([

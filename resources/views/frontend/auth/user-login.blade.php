@@ -8,6 +8,11 @@
                     <div class="login-content">
                         <h4>Login</h4>
                         <p></p>
+                        @if (session('resetsucces'))
+                            <div class="alert alert-success">
+                                {{ session('resetsucces') }}
+                            </div>
+                        @endif
                         <form  action="{{route('guest.login')}}" class="sign-form widget-form " method="post">
                             @csrf
                             <div class="form-group">
@@ -21,7 +26,7 @@
                                 <input type="checkbox" class="custom-control-input" id="rememberMe">
                                     <label class="custom-control-label" for="rememberMe">Remember Me</label>
                                 </div>
-                                <a href="#" class="btn-link ">Forgot Password?</a>
+                                <a href="{{route('forgot.password')}}" class="btn-link ">Forgot Password?</a>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn-custom">Login in</button>
