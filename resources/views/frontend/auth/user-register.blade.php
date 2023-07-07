@@ -6,6 +6,11 @@
             <div class="col-lg-6 col-md-8 m-auto">
                 <div class="login-content">
                     <h4>Sign up</h4>
+                    @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                    @endif
                     <!--form-->              
                     <form action="{{route('guest.store')}}" class="sign-form widget-form" method="post">
                         @csrf

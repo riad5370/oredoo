@@ -7,6 +7,16 @@
                 <div class="col-lg-6 col-md-8 m-auto">
                     <div class="login-content">
                         <h4>Login</h4>
+                        @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                        @endif
+                        @if (session('error'))
+                         <div class="alert alert-warning">
+                            {{ session('error') }}
+                        </div>
+                        @endif
                         <p></p>
                         @if (session('resetsucces'))
                             <div class="alert alert-success">
