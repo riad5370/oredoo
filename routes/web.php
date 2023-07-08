@@ -13,6 +13,7 @@ use App\Http\Controllers\GuestLoginController;
 use App\Http\Controllers\GithubController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\GuestPassResetController;
+use App\Http\Controllers\CommentController;
 
 
 /*
@@ -62,6 +63,8 @@ Route::Post('/password-reset-request',[GuestPassResetController::class,'passRese
 Route::get('/password-reset-form/{token}',[GuestPassResetController::class,'passResetForm'])->name('pass.reset.form');
 Route::Post('/password-reset',[GuestPassResetController::class,'passwordReset'])->name('password.reset');
 
+//comments-reply
+Route::Post('/comment/store',[CommentController::class,'store'])->name('comment.store');
 
 
 //start-admin-route
