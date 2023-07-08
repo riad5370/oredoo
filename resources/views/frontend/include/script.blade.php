@@ -11,4 +11,28 @@
     <script src="{{asset('frontend')}}/assets/js/main.js"></script>
     <!-- sweet alert  -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- searching  -->
+    <script>
+        $('.search-btn').click(function(){
+            var search_input = $('.search_input').val();
+            var link = "{{route('search')}}"+"?q="+search_input;
+            window.location.href = link;
+        });
+    </script>
+
+    <script>
+        $('.search-btn2').click(function(){
+            var search_input = $('.search_input2').val();
+            var link = "{{route('search')}}"+"?q="+search_input;
+            window.location.href = link;
+        });
+    </script>
+
+    <script>
+        $('.search-btn3').click(function(){
+            var search_input = $('.search_input3').val();
+            var link = "{{route('search')}}"+"?q="+search_input;
+            window.location.href = link;
+        });
+    </script>
     @stack('js')

@@ -43,10 +43,10 @@
                         <button type="button" class="close">
                             <i class="far fa-times"></i>
                         </button>
-                        <form class="search-form" action="https://oredoo.assiagroupe.net/Oredoo/search.html">
-                            <input type="search" value="" placeholder="What are you looking for?">
-                            <button type="submit" class="search-btn"> search</button>
-                        </form>
+                        <div class="search-form">
+                            <input type="text" class="search_input" placeholder="What are you looking for?">
+                            <button type="btn" class="search-btn"> search</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -54,6 +54,7 @@
     </div>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
     @include('frontend.include.script')
 
 </body>

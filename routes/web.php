@@ -14,6 +14,7 @@ use App\Http\Controllers\GithubController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\GuestPassResetController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\SearchController;
 
 
 /*
@@ -27,17 +28,21 @@ use App\Http\Controllers\CommentController;
 |
 */
 
-//start-frontend-route
+//Start-Frontend-Route
 Route::get('/',[FrontendController::class,'index'])->name('index');
 Route::get('/details/post/{slug}',[FrontendController::class,'details'])->name('details');
 Route::get('/category/post/{category}',[FrontendController::class,'categoryPost'])->name('category.post');
 Route::get('/author-post/{author}',[FrontendController::class,'authorPost'])->name('author.post');
 Route::get('/author/list',[FrontendController::class,'authorList'])->name('author.list');
 
-//Guest-login-register
+//searching........
+Route::get('/search',[SearchController::class,'search'])->name('search');
+
+
+//Guest-Login-Register
 Route::get('/guest/register',[GuestRegisterController::class,'index'])->name('guest.register');
 Route::post('/guest/store',[GuestRegisterController::class,'store'])->name('guest.store');
-//login process
+//Login-process
 Route::get('/guest/login',[GuestLoginController::class,'index'])->name('login.index');
 Route::post('/guest/login/request',[GuestLoginController::class,'guestLogin'])->name('guest.login');
 //logout
@@ -51,13 +56,13 @@ Route::get('/github/callback',[GithubController::class,'providerToApplication'])
 Route::get('/google/redirect',[GoogleController::class,'redirectProvider'])->name('google.redirect');
 Route::get('/google/callback',[GoogleController::class,'providerToApplication'])->name('google.callback');
 
-//Email Verify
+//Email-Verify
 Route::get('/verify/mail/{token}', [GuestRegisterController::class, 'verifyMail'])->name('verify.mail');
 Route::get('/mail/verify/request',[GuestRegisterController::class,'mailVerifyReq'])->name('verify.mail.req');
 Route::post('/mail/verify/again',[GuestRegisterController::class,'mailVerifyAgain'])->name('mail.verify.again');
 
 
-//password Reset
+//password-Reset
 Route::get('/forgot-password',[GuestPassResetController::class,'index'])->name('forgot.password');
 Route::Post('/password-reset-request',[GuestPassResetController::class,'passResetRequest'])->name('reset.request');
 Route::get('/password-reset-form/{token}',[GuestPassResetController::class,'passResetForm'])->name('pass.reset.form');
@@ -67,7 +72,7 @@ Route::Post('/password-reset',[GuestPassResetController::class,'passwordReset'])
 Route::Post('/comment/store',[CommentController::class,'store'])->name('comment.store');
 
 
-//start-admin-route
+//Start-AdminPanel-Route
 Route::middleware([
     'auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
@@ -97,6 +102,4 @@ Route::middleware([
     Route::get('/remove/role/{id}',[RoleController::class,'removeRole'])->name('remove.role');
     Route::get('/role/permission/edit/{id}',[RoleController::class,'permissionEdit'])->name('edit.user.permission');
     Route::post('/permission/update',[RoleController::class,'permissionUpdate'])->name('permission.update');
-
-
 });

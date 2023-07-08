@@ -109,10 +109,10 @@
                                 <h5>Search</h5>
                             </div>
                             <div class=" widget-search">
-                                <form action="https://oredoo.assiagroupe.net/Oredoo/search.html">
-                                    <input type="search" id="gsearch" name="gsearch" placeholder="Search ....">
-                                    <a href="search.html" class="btn-submit"><i class="las la-search"></i></a>
-                                </form>
+                                <div class="search-form">
+                                    <input type="text" class="search_input2" placeholder="What are you looking?">
+                                    <button type="btn" class="search-btn search-btn2"> search</button>
+                                </div>
                             </div>
                         </div>
 
