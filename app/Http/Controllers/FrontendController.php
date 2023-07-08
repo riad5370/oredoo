@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\PopularPost;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -14,15 +16,37 @@ class FrontendController extends Controller
     public function index(){
         $sliderPost = Post::latest('created_at')->take(3)->get();
         $recentPost = Post::latest('created_at')->paginate(5);
+
+        $popular_posts = PopularPost::groupBy('post_id')
+            ->selectRaw('post_id, sum(total_view) as sum')
+            ->orderBy('sum','DESC')
+            ->paginate(4);
+
         return view('frontend.index',[
             'sliderPost'=>$sliderPost,
             'recentPost'=>$recentPost,
             'categories'=>Category::all(),
-            'tags'=>Tag::all()
+            'tags'=>Tag::all(),
+            'popular_posts'=>$popular_posts
         ]);
     }
     public function details($slug){
         $detailsPost = Post::where('slug',$slug)->first();
+
+        //most-view-process
+        $ip = getHostByName(getHostName());
+        if(PopularPost::where('post_id',$detailsPost->id)->exists()){
+            PopularPost::where('post_id',$detailsPost->id)->increment('total_view',1);
+        }
+        else{
+            PopularPost::insert([
+                'post_id'=>$detailsPost->id,
+                'total_view'=> 1,
+                'created_at'=>Carbon::now()
+            ]);
+        }
+        //end-most-view
+
         $comments = Comment::with('replies')->where('post_id',$detailsPost->id)->whereNull('parent_id')->get();
         return view('frontend.post.details_post',[
             'detailsPost'=>$detailsPost,

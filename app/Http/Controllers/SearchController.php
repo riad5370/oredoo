@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\PopularPost;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -19,12 +20,19 @@ class SearchController extends Controller
                 });
             }
         })->Paginate(5);
+
+        $popular_posts = PopularPost::groupBy('post_id')
+            ->selectRaw('post_id, sum(total_view) as sum')
+            ->orderBy('sum','DESC')
+            ->paginate(4);
+
         $categories = Category::all();
         $tags = Tag::all();
         return view('frontend.search.search',[
             'categories'=>$categories,
             'tags'=>$tags,
-            'searchPost'=>$searchePost
+            'searchPost'=>$searchePost,
+            'popular_posts'=>$popular_posts
         ]);
     }
     
