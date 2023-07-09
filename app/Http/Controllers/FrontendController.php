@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Inbox;
 use App\Models\PopularPost;
 use App\Models\Post;
 use App\Models\Tag;
@@ -15,7 +16,7 @@ class FrontendController extends Controller
 {
     public function index(){
         $sliderPost = Post::latest('created_at')->take(3)->get();
-        $recentPost = Post::latest('created_at')->paginate(5);
+        $recentPost = Post::latest('created_at')->paginate(6);
 
         $popular_posts = PopularPost::groupBy('post_id')
             ->selectRaw('post_id, sum(total_view) as sum')
@@ -63,10 +64,18 @@ class FrontendController extends Controller
     }
     public function authorPost($author){
         $authorPost = Post::where('author_id',$author)->paginate(5);
+
+        $popular_posts = PopularPost::groupBy('post_id')
+            ->selectRaw('post_id, sum(total_view) as sum')
+            ->orderBy('sum','DESC')
+            ->paginate(3);
+
         return view('frontend.post.author_post',[
             'authorInfo'=>User::find($author),
             'authorPost'=>$authorPost,
-            'tags'=>Tag::all()
+            'tags'=>Tag::all(),
+            'categories'=>Category::all(),
+            'popular_posts'=>$popular_posts
         ]);
     }
     public function authorList(){
@@ -76,5 +85,19 @@ class FrontendController extends Controller
         return view('frontend.about.author-list',[
             'authorLists'=>$authorLists
         ]);
+    }
+   //contact-page............................................
+    public function contact(){
+        return view('frontend.contact.contact');
+    }
+    public function messageSent(Request $request){
+        Inbox::create([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'subject'=>$request->subject,
+            'message'=>$request->message,
+            'created_at'=>Carbon::now()
+        ]);
+        return back()->withSuccess('Your message was sent successfully.');
     }
 }

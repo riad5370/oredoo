@@ -104,10 +104,10 @@
                                 <h5>Search</h5>
                             </div>
                             <div class=" widget-search">
-                                <form action="https://oredoo.assiagroupe.net/Oredoo/search.html">
-                                    <input type="search" id="gsearch" name="gsearch" placeholder="Search ....">
-                                    <a href="search.html" class="btn-submit"><i class="las la-search"></i></a>
-                                </form>
+                                <div class="search-form">
+                                    <input type="text" class="search_input4" placeholder="What are you looking?">
+                                    <button type="btn" class="search-btn search-btn4"> search</button>
+                                </div>
                             </div>
                          </div>
 
@@ -117,12 +117,12 @@
                                 <h5>Categories</h5>
                             </div>
                             <div class="widget-categories">
-                                @foreach ($authorPost as $athurCategory)
-                                <a class="category-item" href="{{route('category.post',$athurCategory->category_id)}}">
+                                @foreach ($categories as $category)
+                                <a class="category-item" href="{{route('category.post',$category->id)}}">
                                     <div class="image">
-                                        <img src="{{asset('uploads/category/'.$athurCategory->category->image)}}" alt="">
+                                        <img src="{{asset('uploads/category/'.$category->image)}}" alt="">
                                     </div>
-                                    <p>{{$athurCategory->category->name}}</p>
+                                    <p>{{$category->name}}</p>
                                 </a> 
                                 @endforeach
                                 
@@ -199,69 +199,23 @@
                          
                              <ul class="widget-popular-posts">
                                 <!--post1-->
+                                @foreach ($popular_posts as $post)
                                 <li class="small-post">
                                     <div class="small-post-image">
-                                         <a href="post-single.html">
-                                             <img src="assets/img/blog/1.jpg" alt="">
-                                             <small class="nb">1</small>
+                                         <a href="{{route('details',$post->post->slug)}}">
+                                             <img src="{{asset('uploads/post/'.$post->post->image)}}" alt="">
+                                             <small class="nb">{{$post->sum}}</small>
                                          </a>
                                     </div>
                                     <div class="small-post-content">
                                          <p>
-                                             <a href="post-single.html">Everything is designed. Few things are designed well.</a>
+                                             <a href="{{route('details',$post->post->slug)}}">{{$post->post->title}}</a>
                                          </p>
-                                         <small> <span class="slash"></span>3 mounth ago</small>
+                                         <small> <span class="slash"></span>{{$post->post->created_at->diffForHumans()}}</small>
                                     </div>
-                                 </li>
-
-                                 <!--post2-->
-                                 <li class="small-post">
-                                     <div class="small-post-image">
-                                         <a href="post-single.html">
-                                             <img src="assets/img/blog/5.jpg" alt="">
-                                             <small class="nb">2</small>
-                                         </a>
-                                     </div>
-                                     <div class="small-post-content">
-                                         <p>
-                                             <a href="post-single.html">Brand yourself for the career you want, not the job you </a>
-                                         </p>
-                                         <small> <span class="slash"></span>3 mounth ago</small>
-                                     </div>
-                                 </li>
-                             
-                                 <!--post3-->
-                                 <li class="small-post">
-                                     <div class="small-post-image">
-                                         <a href="post-single.html">
-                                             <img src="assets/img/blog/13.jpg" alt="">
-                                             <small class="nb">3</small>
-                                         </a>
-                                     </div>
-                                     <div class="small-post-content">
-                                         <p>
-                                             <a href="post-single.html">It’s easier to ask forgiveness than it is to get permission.</a>
-                                         </p>
-                                         <small> <span class="slash"></span>3 mounth ago</small>
-                                     
-                                     </div>
-                                 </li>
-                                 <!--post4-->
-                                 <li class="small-post">
-                                     <div class="small-post-image">
-                                        <a href="post-single.html">
-                                            <img src="assets/img/blog/16.jpg" alt="">
-                                            <small class="nb">4</small>
-                                        </a>
-                                     </div>
-                                     <div class="small-post-content">
-                                         <p>
-                                             <a href="post-single.html">All happiness depends on a leisurely breakfast</a>
-                                         </p>
-                                         <small> <span class="slash"></span>3 mounth ago</small>
-                                     </div>
-                                 </li>
-                                 <!--/-->
+                                 </li>  
+                                @endforeach
+                                
                              </ul>
                          </div>
 

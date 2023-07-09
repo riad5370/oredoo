@@ -35,4 +35,12 @@
             window.location.href = link;
         });
     </script>
+
+<script>
+    $('.search-btn4').click(function(){
+        var search_input = $('.search_input4').val();
+        var link = "{{route('search')}}"+"?q="+search_input;
+        window.location.href = link;
+    });
+</script>
     @stack('js')

@@ -23,7 +23,7 @@ class CategoryRequest extends FormRequest
     {
         return [
             'name'=>'required|unique:categories',
-            'image'=>'required|file|max:512|mimes:jpg,bmp,png'
+            'image'=>'required|file|max:512|mimes:jpg,bmp,png,webp'
         ];
     }
     public function messages()

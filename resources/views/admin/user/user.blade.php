@@ -79,8 +79,11 @@
             $('input:checkbox').not(this).prop('checked', this.checked);
         });
     </script>
-      <script src="backend/vendors/datatables.net/jquery.dataTables.js"></script>
-      <script src="backend/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-     <script src="backend/js/data-table.js"></script>
-     <script src="backend/js/template.js"></script>
+    @if (count($users) > 10)
+        <script src="backend/vendors/datatables.net/jquery.dataTables.js"></script>
+        <script src="backend/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+        <script src="backend/js/data-table.js"></script>
+        <script src="backend/js/template.js"></script> 
+    @endif
+      
 @endsection

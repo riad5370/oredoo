@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\InboxController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\GuestRegisterController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\GuestPassResetController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SearchController;
+
 
 
 /*
@@ -35,8 +37,13 @@ Route::get('/category/post/{category}',[FrontendController::class,'categoryPost'
 Route::get('/author-post/{author}',[FrontendController::class,'authorPost'])->name('author.post');
 Route::get('/author/list',[FrontendController::class,'authorList'])->name('author.list');
 
+//contact
+Route::get('/contact',[FrontendController::class,'contact'])->name('contact');
+Route::post('/message/sent',[FrontendController::class,'messageSent'])->name('message.sent');
+
 //searching........
 Route::get('/search',[SearchController::class,'search'])->name('search');
+
 
 
 //Guest-Login-Register
@@ -93,6 +100,12 @@ Route::middleware([
 
      //blog-post 
      Route::resource('posts',PostController::class);
+
+     //inbox
+    Route::get('/inbox',[InboxController::class,'inbox'])->name('inbox');
+    Route::get('/inbox/show/{id}',[InboxController::class,'show'])->name('inbox.show');
+    Route::get('/inbox/destroy/{inbox}',[InboxController::class,'destroy'])->name('destroy');
+     
 
     //Role-management
     Route::get('role',[RoleController::class,'index'])->name('role.index');

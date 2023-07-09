@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
+use App\Models\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -110,6 +111,14 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
+        $post = Post::where('category_id', $id)->get();
+
+        foreach ($post as $post) {
+            Post::find($post->id)->update([
+                'category_id' => 10,
+            ]);
+        }
+
         $category = Category::find($id);
         if($category->image){
             if(file_exists(public_path('uploads/category/'.$category->image))){

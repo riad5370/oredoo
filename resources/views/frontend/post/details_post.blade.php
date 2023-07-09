@@ -84,12 +84,16 @@
                         <div class="post-single-author ">
                             <div class="authors-info">
                                 <div class="image">
-                                    <a href="author.html" class="image">
-                                        <img src="{{asset('frontend')}}/assets/img/author/1.jpg" alt="">
+                                    <a href="{{route('author.post',$detailsPost->author_id)}}" class="image">
+                                        @if ($detailsPost->user->image == null)
+                                        <img src="{{ Avatar::create($detailsPost->user->name)->toBase64() }}" />
+                                        @else
+                                        <img src="{{ asset('uploads/user/'.$detailsPost->user->image) }}" alt="">
+                                        @endif
                                     </a>
                                 </div>
                                 <div class="content">
-                                    <h4>sarah smith</h4>
+                                    <h4>{{$detailsPost->user->name}}</h4>
                                     <p> Etiam vitae dapibus rhoncus. Eget etiam aenean nisi montes felis pretium donec veni. Pede vidi condimentum et aenean hendrerit.
                                         Quis sem justo nisi varius.
                                     </p>
