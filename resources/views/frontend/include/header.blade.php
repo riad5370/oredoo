@@ -3,7 +3,7 @@
         <div class="header-area ">
             <!--logo-->
             <div class="logo">
-                <a href="index.html">
+                <a href="{{route('index')}}">
                     <img src="{{asset('frontend')}}/assets/img/logo/logo-dark.png" alt="" class="logo-dark">
                     <img src="{{asset('frontend')}}/assets/img/logo/logo-white.png" alt="" class="logo-white">
                 </a>
@@ -17,13 +17,13 @@
                                 <a class="nav-link active" href="{{route('index')}}"> Home </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="blog.html"> Blogs </a>
+                                <a class="nav-link" href="{{route('blogs')}}"> Blogs </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('author.list')}}"> Authors </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="about.html"> About </a>
+                                <a class="nav-link" href="{{route('about')}}"> About </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('contact')}}"> Contact </a>

@@ -34,7 +34,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.user.create');
     }
 
     /**
@@ -42,7 +42,23 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $userdata = [
+            'name'=> 'required',
+            'email'=> 'required|email|unique:users',
+            'image'=> 'image|file|max:2048',
+            'password'=> 'required|string|min:8',
+            'password_confirmation'=> 'required|same:password',
+        ];
+        $validateData = $request->validate($userdata);
+        $validateData['password'] = bcrypt($validateData['password']);
+
+        if( $image = $request->file('image')){
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('/uploads/user/'), $imageName);
+            $validateData['image'] = $imageName;
+        }
+        User::create($validateData);
+        return back()->withSuccess('User created successfully');
     }
 
     /**
@@ -76,8 +92,8 @@ class UserController extends Controller
         else{
             $request->validate([
                 'old_password'=>'required',
-                'password'=>'required|confirmed',
-                'password_confirmation'=>'required',
+                'password'=> 'required|string|min:8',
+                'password_confirmation'=> 'required|same:password',
             ]);
             if(Hash::check($request->old_password,auth::user()->password)){
                 User::find(auth::id())->update([
@@ -93,14 +109,19 @@ class UserController extends Controller
         }
     }
     public function photoUpdate(Request $request){
-        $uploaded_file = $request->image;
-        $extension = $uploaded_file->extension();
-        $name = rand(100,9999).'.'.$extension;
-        Image::make($uploaded_file)->resize(300,200)->save(public_path('uploads/user/'.$name));
-        User::find(Auth::id())->update([
-           'image'=>$name
+        $user = User::find(Auth::id());
+        if($user->image){
+            if(file_exists('uploads/user/'.$user->image)){
+                unlink(public_path('uploads/user/'.$user->image));  
+            }
+        }
+        $image = $request->file('image');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('/uploads/user/'), $imageName);
+        $user->update([
+           'image'=>$imageName
         ]);
-        return back();
+        return back()->with('success','profile image Updated!');
     }
     /**
      * Remove the specified resource from storage.

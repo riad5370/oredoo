@@ -1,4 +1,7 @@
 @extends('admin.master')
+@push('css')
+<link rel="stylesheet" href="backend/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+@endpush
 @section('content')
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
@@ -6,7 +9,7 @@
             <li class="breadcrumb-item active" aria-current="page">Tag</li>
         </ol>
     </nav>
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-md-9 ">
             <form action="" method="post">
                 @csrf
@@ -66,25 +69,13 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-header">Add Tag</div>
-                <div class="card-body">
-                    <form action="{{route('tags.store')}}" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <label for="">Name</label>
-                            <input type="text" name="name" value="{{old('name')}}" class="form-control">
-                            @error('name')
-                                <strong class="text-danger">{{$message}}</strong>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" value="Add Tag" class="btn btn-sm btn-success">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
 @endsection
+@if(count($tags) > 10)
+@section('footer_script')
+    <script src="backend/vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="backend/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="backend/js/data-table.js"></script>
+    <script src="backend/js/template.js"></script>
+@endsection
+@endif

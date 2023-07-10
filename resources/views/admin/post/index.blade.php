@@ -1,4 +1,7 @@
 @extends('admin.master')
+@push('css')
+<link rel="stylesheet" href="backend/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+@endpush
 @section('content')
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
@@ -80,3 +83,11 @@
   </div>
 </div>
 @endsection
+@if(count($posts) > 10)
+@section('footer_script')
+    <script src="backend/vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="backend/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="backend/js/data-table.js"></script>
+    <script src="backend/js/template.js"></script>
+@endsection
+@endif

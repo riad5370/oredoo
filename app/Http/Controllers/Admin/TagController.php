@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class TagController extends Controller
 {
@@ -34,7 +35,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.tag.create');
     }
 
     /**
@@ -48,7 +49,7 @@ class TagController extends Controller
         Tag::insert([
             'name'=>$request->name
         ]);
-        return back()->withSuccess('Tag inserted!');
+        return Redirect::route('tags.index')->withSuccess('Tag inserted!');
     }
 
     /**

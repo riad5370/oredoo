@@ -78,7 +78,9 @@
                                 <li class="entry-cat">
                                     <a href="{{route('category.post',[$post->category_id,'category-blog-post'])}}" class="category-style-1">{{$post->category->name}}</a>
                                 </li>
-                                <li class="post-date"> <span class="line"></span>{{$post->created_at->format('F d,Y')}}</li>
+                                @if ($post->created_at)
+                                <li class="post-date"> <span class="line"></span>{{$post->created_at->format('F d,Y')}}</li> 
+                                @endif
                             </ul>
                             <h5 class="entry-title">
                                 <a href="{{route('details',$post->slug)}}">{{$post->title}}</a>
@@ -202,16 +204,20 @@
                                 @foreach ($popular_posts as $post)
                                 <li class="small-post">
                                     <div class="small-post-image">
-                                         <a href="{{route('details',$post->post->slug)}}">
-                                             <img src="{{asset('uploads/post/'.$post->post->image)}}" alt="">
-                                             <small class="nb">{{$post->sum}}</small>
-                                         </a>
+                                        @if($post->post)
+                                        <a href="{{route('details',$post->post->slug)}}">
+                                            <img src="{{asset('uploads/post/'.$post->post->image)}}" alt="">
+                                            <small class="nb">{{$post->sum}}</small>
+                                        </a>
+                                        @endif
                                     </div>
                                     <div class="small-post-content">
                                          <p>
-                                             <a href="{{route('details',$post->post->slug)}}">{{$post->post->title}}</a>
+                                            @if ($post->post)
+                                            <a href="{{route('details',$post->post->slug)}}">{{$post->post->title}}</a> 
+                                            @endif
                                          </p>
-                                         <small> <span class="slash"></span>{{$post->post->created_at->diffForHumans()}}</small>
+                                         <small> <span class="slash"></span>{{ optional(optional($post->post)->created_at)->diffForHumans() }}</small>  
                                     </div>
                                  </li>  
                                 @endforeach

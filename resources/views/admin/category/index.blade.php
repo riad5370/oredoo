@@ -1,4 +1,7 @@
 @extends('admin.master')
+@push('css')
+<link rel="stylesheet" href="backend/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+@endpush
 @section('content')
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
@@ -6,7 +9,7 @@
             <li class="breadcrumb-item active" aria-current="page">Category</li>
         </ol>
     </nav>
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-md-9 ">
             <form action="" method="post">
                 @csrf
@@ -70,33 +73,13 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-3">
-            <div class="card">
-                <div class="card-header">Add Category</div>
-                <div class="card-body">
-                    <form action="{{route('categorys.store')}}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-group">
-                            <label for="">Name</label>
-                            <input type="text" name="name" value="{{old('name')}}" class="form-control">
-                            @error('name')
-                                <strong class="text-danger">{{$message}}</strong>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="">Image</label>
-                            <input type="file" name="image" class="form-control" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
-                            <img width="100" src="" id="blah" alt="">
-                            @error('image')
-                                <strong class="text-danger">{{$message}}</strong>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" value="Add Category" class="btn btn-sm btn-success">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
 @endsection
+@if(count($categorys) > 10)
+@section('footer_script')
+    <script src="backend/vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="backend/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="backend/js/data-table.js"></script>
+    <script src="backend/js/template.js"></script>
+@endsection
+@endif

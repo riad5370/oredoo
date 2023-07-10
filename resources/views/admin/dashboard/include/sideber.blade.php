@@ -31,6 +31,9 @@
                             <a href="{{route('user.index')}}" class="nav-link">User List</a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{route('user.create')}}" class="nav-link">Add User</a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{route('trash')}}" class="nav-link">Trash List</a>
                         </li>
                     </ul>
@@ -46,7 +49,10 @@
                 <div class="collapse" id="category">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
-                            <a href="{{route('categorys.index')}}" class="nav-link">Category</a>
+                            <a href="{{route('categorys.index')}}" class="nav-link">Category List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('categorys.create')}}" class="nav-link">Add Category</a>
                         </li>
                     </ul>
                 </div>
@@ -61,6 +67,9 @@
                     <ul class="nav sub-menu">
                         <li class="nav-item">
                             <a href="{{route('tags.index')}}" class="nav-link">Tag List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('tags.create')}}" class="nav-link">Add Tag</a>
                         </li>
                     </ul>
                 </div>
@@ -81,6 +90,14 @@
                         </li>
                     </ul>
                 </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('about.edit')}}" role="button" aria-expanded="false" aria-controls="emails">
+                    <i class="link-icon" data-feather="mail"></i>
+                    <span class="link-title">About</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
             </li>
 
             <li class="nav-item">

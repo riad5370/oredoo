@@ -7,7 +7,7 @@
                  <div class="col-lg-12">
                      <div class="section-heading-2-title">
                          <h1>Contact us</h1>
-                         <p class="links"><a href="index.html">Home <i class="las la-angle-right"></i></a> pages</p>
+                         <p class="links"><a href="{{route('index')}}">Home <i class="las la-angle-right"></i></a> pages</p>
                      </div>
                  </div>  
              </div>

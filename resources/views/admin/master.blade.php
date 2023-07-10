@@ -1,18 +1,10 @@
 <!DOCTYPE html>
-<!--
-Template Name: NobleUI - admin & Dashboard Template
-Author: NobleUI
-Website: https://www.nobleui.com
-Contact: nobleui123@gmail.com
-Purchase: https://1.envato.market/nobleui_admin
-License: You must have a valid license purchased only from above link or https://themeforest.net/user/nobleui/portfolio/ in order to legally use the theme for your project.
--->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>NobleUI Responsive Bootstrap 4 Dashboard Template</title>
+    <title>Oredoo</title>
     <!-- core:css -->
     <link rel="stylesheet" href="{{asset('backend/vendors/core/core.css')}}">
     <!-- endinject -->

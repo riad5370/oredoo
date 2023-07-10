@@ -100,15 +100,21 @@ class PostController extends Controller
             'slug' => Str::lower(str_replace(' ', '-', $request->title)) . '-' . rand(1000000000, 9999999999),
             'created_at' => Carbon::now()
         ];
-            
+         
+        $post = Post::find($id);
         if ($request->image == '') {
-            Post::find($id)->update($data);
+            $post->update($data);
         } else {
+            if($post->image){
+                if(file_exists('uploads/post/'.$post->image)){
+                    unlink(public_path('uploads/post/'.$post->image));  
+                }
+            }
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('/uploads/post/'), $imageName);
             $data['image'] = $imageName;
-            Post::find($id)->update($data);
+            $post->update($data);
         }
             
         return redirect()->route('posts.index')->with('success', 'Post has been updated!');

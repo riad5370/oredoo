@@ -167,17 +167,22 @@
                                 @foreach ($popular_posts as $post)
                                 <li class="small-post">
                                     <div class="small-post-image">
-                                        <a href="{{route('details',$post->post->slug)}}">
-                                            <img src="{{asset('uploads/post/'.$post->post->image)}}" alt="">
-                                            <small class="nb">{{ $post->sum }}</small>
-                                        </a>
+                                        @if ($post->post)
+                                            <a href="{{route('details',$post->post->slug)}}">
+                                                <img src="{{asset('uploads/post/'.$post->post->image)}}" alt="">
+                                                <small class="nb">{{ $post->sum }}</small>
+                                            </a>   
+                                        @endif
+                                        
                                     </div>
                                     <div class="small-post-content">
                                         <p>
-                                            <a href="{{route('details',$post->post->slug)}}">{{$post->post->title}}</a>
+                                            @if ($post->post)
+                                            <a href="{{route('details',$post->post->slug)}}">{{$post->post->title}}</a>  
+                                            @endif
                                         </p>
-                                        <small> <span class="slash"></span>      {{$post->post->created_at->diffForHumans()}}</small></small>
-                                    
+                                        <small> <span class="slash"></span>{{ optional(optional($post->post)->created_at)->diffForHumans() }}</small>
+                                        
                                     </div>
                                 </li>  
                                 @endforeach

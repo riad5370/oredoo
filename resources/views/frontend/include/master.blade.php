@@ -8,7 +8,7 @@
     <!-- favicon -->
     
     <!-- Title -->Stay Connected
-    <title> Oredoo - Personal Blog HTML Template </title>
+    <title>Oredoo Personal Blog</title>
 
     <!-- CSS Plugins -->
     @include('frontend.include.style')

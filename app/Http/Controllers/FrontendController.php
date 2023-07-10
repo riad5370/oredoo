@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Inbox;
@@ -17,6 +18,7 @@ class FrontendController extends Controller
     public function index(){
         $sliderPost = Post::latest('created_at')->take(3)->get();
         $recentPost = Post::latest('created_at')->paginate(6);
+        $categories = Category::where('status',1)->get();
 
         $popular_posts = PopularPost::groupBy('post_id')
             ->selectRaw('post_id, sum(total_view) as sum')
@@ -26,8 +28,8 @@ class FrontendController extends Controller
         return view('frontend.index',[
             'sliderPost'=>$sliderPost,
             'recentPost'=>$recentPost,
-            'categories'=>Category::all(),
-            'tags'=>Tag::all(),
+            'categories'=>$categories,
+            'tags'=> Tag::where('status',1)->get(),
             'popular_posts'=>$popular_posts
         ]);
     }
@@ -73,8 +75,8 @@ class FrontendController extends Controller
         return view('frontend.post.author_post',[
             'authorInfo'=>User::find($author),
             'authorPost'=>$authorPost,
-            'tags'=>Tag::all(),
-            'categories'=>Category::all(),
+            'tags'=>Tag::where('status',1)->get(),
+            'categories'=>Category::where('status',1)->get(),
             'popular_posts'=>$popular_posts
         ]);
     }
@@ -99,5 +101,19 @@ class FrontendController extends Controller
             'created_at'=>Carbon::now()
         ]);
         return back()->withSuccess('Your message was sent successfully.');
+    }
+    //about-page........
+    public function about(){
+        $about = About::all();
+        return view('frontend.about.about',compact('about'));
+    }
+    //blog-page.........
+    public function blog(){
+        $posts = Post::query()
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        return view('frontend.blog.blog-post',[
+            'posts'=>$posts
+        ]);
     }
 }

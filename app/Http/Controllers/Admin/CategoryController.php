@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -29,7 +30,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.category.create');
     }
 
     public function status($id){
@@ -57,7 +58,7 @@ class CategoryController extends Controller
         Category::find($id)->update([
             'image'=>$name,
         ]);
-        return back()->with('success','Category Added!');
+        return Redirect::route('categorys.index')->with('success','Category Added!');
     }
 
     /**

@@ -7,7 +7,9 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\InboxController;
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\RoleController;
+//start-frontend
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\GuestRegisterController;
 use App\Http\Controllers\GuestLoginController;
@@ -36,10 +38,12 @@ Route::get('/details/post/{slug}',[FrontendController::class,'details'])->name('
 Route::get('/category/post/{category}',[FrontendController::class,'categoryPost'])->name('category.post');
 Route::get('/author-post/{author}',[FrontendController::class,'authorPost'])->name('author.post');
 Route::get('/author/list',[FrontendController::class,'authorList'])->name('author.list');
-
+Route::get('/blogs',[FrontendController::class,'blog'])->name('blogs');
 //contact
-Route::get('/contact',[FrontendController::class,'contact'])->name('contact');
+Route::get('/contact-us',[FrontendController::class,'contact'])->name('contact');
 Route::post('/message/sent',[FrontendController::class,'messageSent'])->name('message.sent');
+//about
+Route::get('/about-us',[FrontendController::class,'about'])->name('about');
 
 //searching........
 Route::get('/search',[SearchController::class,'search'])->name('search');
@@ -92,14 +96,18 @@ Route::middleware([
     Route::post('/force/delete',[UserController::class,'forceDeleteOrRestore'])->name('force.delete');
     
     //start-category
-     Route::resource('categorys',CategoryController::class);
-     Route::get('/category/status/{id}',[CategoryController::class,'status'])->name('categorys.status');
+    Route::resource('categorys',CategoryController::class);
+    Route::get('/category/status/{id}',[CategoryController::class,'status'])->name('categorys.status');
      //Tag
-     Route::resource('tags',TagController::class);
-     Route::get('/tags/status/{id}',[TagController::class,'status'])->name('tags.status');
+    Route::resource('tags',TagController::class);
+    Route::get('/tags/status/{id}',[TagController::class,'status'])->name('tags.status');
 
      //blog-post 
-     Route::resource('posts',PostController::class);
+    Route::resource('posts',PostController::class);
+    
+     //About-us
+    Route::get('/about',[AboutController::class,'about'])->name('about.edit');
+    Route::post('/about-update',[AboutController::class,'update'])->name('about.update');
 
      //inbox
     Route::get('/inbox',[InboxController::class,'inbox'])->name('inbox');
